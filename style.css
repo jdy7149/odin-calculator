@@ -50,7 +50,7 @@ body {
     padding: 0 16px;
 }
 
-button, #clear, #equal {
+button {
     flex: 1;
     font-size: 24px;
     border: none;
@@ -59,7 +59,6 @@ button, #clear, #equal {
 
 button, #clear, #equal {
     transition: background-color 0.2s ease;
-
 }
 
 button:hover {

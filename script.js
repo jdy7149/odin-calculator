@@ -3,9 +3,9 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-let operand1;
-let operator;
-let operand2;
+const operand1 = [];
+let operator = '';
+const operand2 = [];
 
 const operate = (operand1, operator, operand2) => {
     switch (operator) {
@@ -19,3 +19,31 @@ const operate = (operand1, operator, operand2) => {
             return divide(operand1, operand2);
     }
 };
+
+
+const display = document.querySelector('#display');
+
+document.querySelectorAll('button.digit')
+.forEach(btn => btn.addEventListener('click', evt => {
+    const pressedValue = evt.target.textContent;
+    const targetOperand = operator ? operand2 : operand1;
+
+    if (pressedValue === '.' && targetOperand.includes('.')) return;
+
+    targetOperand.push(pressedValue);
+    display.textContent += pressedValue;
+}));
+
+document.querySelectorAll('button.operator')
+.forEach(btn => btn.addEventListener('click', evt => {
+    if (operator) return;
+
+    const pressedValue = evt.target.textContent;
+
+    operator = pressedValue;
+    display.textContent += pressedValue;
+}));
+
+document.querySelector('#equal').addEventListener('click', () => {
+
+});
