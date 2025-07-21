@@ -41,9 +41,18 @@ document.querySelectorAll('button.operator')
     const pressedValue = evt.target.textContent;
 
     operator = pressedValue;
-    display.textContent += pressedValue;
+    display.textContent += ` ${operator} `;
 }));
 
 document.querySelector('#equal').addEventListener('click', () => {
+    const x = parseFloat(operand1.join(''));
+    const y = parseFloat(operand2.join(''));
 
+    if (y === 0 && operator === '/') {
+        window.alert('Could not divide by 0');
+        return;
+    }
+
+    const result = operate(x, operator, y);
+    display.textContent = result;
 });
