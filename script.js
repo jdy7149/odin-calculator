@@ -55,7 +55,7 @@ document.querySelectorAll('button.digit')
     const pressedValue = evt.target.textContent;
     const targetOperand = operator ? operand2 : operand1;
 
-    if (pressedValue === '.' && targetOperand.includes('.')) return;
+    if (pressedValue === '.' && (targetOperand.includes('.') || targetOperand.length === 0)) return;
 
     targetOperand.push(pressedValue);
     display.textContent += pressedValue;
@@ -63,7 +63,8 @@ document.querySelectorAll('button.digit')
 
 document.querySelectorAll('button.operator')
 .forEach(btn => btn.addEventListener('click', evt => {
-    if (operator && !operand2) return;
+    const followedOperand = operator ? operand2 : operand1;
+    if (followedOperand.length === 0 || followedOperand.at(-1) === '.') return;
     
     const pressedValue = evt.target.textContent;
 
@@ -82,11 +83,11 @@ document.querySelectorAll('button.operator')
         operator = pressedValue;
         display.textContent = `${result} ${operator} `;
     }
-
 }));
 
 document.querySelector('#equal').addEventListener('click', () => {
-    if (!operand1 || !operator || !operand2) return;
+    if (operand1.length === 0 || !operator || operand2.length === 0 || operand2.at(-1) === '.')
+        return;
 
     let result;
     try {
