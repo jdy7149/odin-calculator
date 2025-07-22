@@ -6,6 +6,7 @@ const divide = (a, b) => a / b;
 const operand1 = [];
 let operator = '';
 const operand2 = [];
+let isOperated = false;
 
 const display = document.querySelector('#display');
 
@@ -46,6 +47,11 @@ const clearDisplay = () => {
 
 document.querySelectorAll('button.digit')
 .forEach(btn => btn.addEventListener('click', evt => {
+    if (isOperated){
+        clearDisplay();
+        isOperated = false;
+    }
+    
     const pressedValue = evt.target.textContent;
     const targetOperand = operator ? operand2 : operand1;
 
@@ -62,13 +68,14 @@ document.querySelectorAll('button.operator')
     const pressedValue = evt.target.textContent;
 
     if (!operator) {
+        isOperated = false;
         operator = pressedValue;
         display.textContent += ` ${operator} `;
     } else {
         let result;
         try {
             result = processOperation(operand1, operator, operand2);
-        } catch (e){
+        } catch (e) {
             window.alert(e.message);
             return;
         }
@@ -81,7 +88,17 @@ document.querySelectorAll('button.operator')
 document.querySelector('#equal').addEventListener('click', () => {
     if (!operand1 || !operator || !operand2) return;
 
-    
+    let result;
+    try {
+        result = processOperation(operand1, operator, operand2);
+    } catch (e) {
+        window.alert(e.message);
+        return;
+    }
+
+    operator = '';
+    isOperated = true;
+    display.textContent = result;
 });
 
 document.querySelector('#clear').addEventListener('click', clearDisplay);
