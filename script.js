@@ -7,6 +7,8 @@ const operand1 = [];
 let operator = '';
 const operand2 = [];
 
+const display = document.querySelector('#display');
+
 const operate = (operand1, operator, operand2) => {
     switch (operator) {
         case '+':
@@ -16,12 +18,31 @@ const operate = (operand1, operator, operand2) => {
         case '*':
             return multiply(operand1, operand2);
         case '/':
-            return divide(operand1, operand2);
+            if (operand2)
+                return divide(operand1, operand2);
+            else {
+                throw Error('Could not divide by 0');
+            }
     }
 };
 
+const processOperation = (operandArr1, operator, operandArr2) => {
+    const x = parseFloat(operandArr1.join(''));
+    const y = parseFloat(operandArr2.join(''));
 
-const display = document.querySelector('#display');
+    const result = operate(x, operator, y);
+    const splitResult = result.toString().split('');
+
+    operand1.splice(0, operand1.length, ...splitResult);
+    operand2.splice(0, operand2.length);
+
+    return result;
+};
+
+const clearDisplay = (display, operand1, operator, operand2) => {
+    display.textContent = operator = '';
+    operand1.length = operand2.length = 0;
+};
 
 document.querySelectorAll('button.digit')
 .forEach(btn => btn.addEventListener('click', evt => {
@@ -36,23 +57,31 @@ document.querySelectorAll('button.digit')
 
 document.querySelectorAll('button.operator')
 .forEach(btn => btn.addEventListener('click', evt => {
-    if (operator) return;
-
+    if (operator && !operand2) return;
+    
     const pressedValue = evt.target.textContent;
 
-    operator = pressedValue;
-    display.textContent += ` ${operator} `;
+    if (!operator) {
+        operator = pressedValue;
+        display.textContent += ` ${operator} `;
+    } else {
+        let result;
+        try {
+            result = processOperation(operand1, operator, operand2);
+        } catch (e){
+            window.alert(e.message);
+            return;
+        }
+        operator = pressedValue;
+        display.textContent = `${result} ${operator} `;
+    }
+
 }));
 
 document.querySelector('#equal').addEventListener('click', () => {
-    const x = parseFloat(operand1.join(''));
-    const y = parseFloat(operand2.join(''));
+    if (!operand1 || !operator || !operand2) return;
 
-    if (y === 0 && operator === '/') {
-        window.alert('Could not divide by 0');
-        return;
-    }
-
-    const result = operate(x, operator, y);
-    display.textContent = result;
+    
 });
+
+document.querySelector('#clear').addEventListener('click', )
