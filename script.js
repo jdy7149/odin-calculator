@@ -39,7 +39,7 @@ const processOperation = (operandArr1, operator, operandArr2) => {
     return result;
 };
 
-const clearDisplay = (display, operand1, operator, operand2) => {
+const clearDisplay = () => {
     display.textContent = operator = '';
     operand1.length = operand2.length = 0;
 };
@@ -84,4 +84,4 @@ document.querySelector('#equal').addEventListener('click', () => {
     
 });
 
-document.querySelector('#clear').addEventListener('click', )
+document.querySelector('#clear').addEventListener('click', clearDisplay);
