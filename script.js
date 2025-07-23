@@ -35,7 +35,7 @@ const processOperation = (operandArr1, operator, operandArr2) => {
     const y = parseFloat(operandArr2.join(''));
 
     const result = operate(x, operator, y);
-    const splitResult = result.toString().split('');
+    const splitResult = result.toFixed().split('');
 
     operand1.splice(0, operand1.length, ...splitResult);
     operand2.splice(0, operand2.length);
