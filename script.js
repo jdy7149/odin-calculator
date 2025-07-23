@@ -58,6 +58,11 @@ document.querySelectorAll('button.digit')
     const pressedValue = evt.target.textContent;
     const targetOperand = operator ? operand2 : operand1;
 
+    if (targetOperand.length >= 15) {
+        window.alert('Could not input over 15 digits');
+        return;
+    }
+
     if (pressedValue === '.' && (targetOperand.includes('.') || targetOperand.length === 0)) return;
 
     targetOperand.push(pressedValue);
