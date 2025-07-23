@@ -11,20 +11,23 @@ let isOperated = false;
 const display = document.querySelector('#display');
 
 const operate = (operand1, operator, operand2) => {
+    let result;
     switch (operator) {
         case '+':
-            return add(operand1, operand2);
+            result = add(operand1, operand2); break;
         case '-':
-            return subtract(operand1, operand2);
+            result = subtract(operand1, operand2); break;
         case '*':
-            return multiply(operand1, operand2);
+            result = multiply(operand1, operand2); break;
         case '/':
             if (operand2)
-                return divide(operand1, operand2);
+                result = divide(operand1, operand2);
             else {
                 throw Error('Could not divide by 0');
             }
     }
+
+    return result.toDecimalPlaces(10);
 };
 
 const processOperation = (operandArr1, operator, operandArr2) => {
