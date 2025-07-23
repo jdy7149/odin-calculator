@@ -103,3 +103,21 @@ document.querySelector('#equal').addEventListener('click', () => {
 });
 
 document.querySelector('#clear').addEventListener('click', clearDisplay);
+
+document.querySelector('#backspace').addEventListener('click', () => {
+    const currentInput = display.textContent;
+    
+    if (operand2.length > 0) {
+        operand2.pop();
+        display.textContent = currentInput.slice(0, -1);
+    }
+    else if (operator) {
+        operator = '';
+        display.textContent = currentInput.slice(0, -3);
+    }
+    else if (operand1.length > 0) {
+        operand1.pop();
+        display.textContent = currentInput.slice(0, -1);
+    }
+    else return;
+});
