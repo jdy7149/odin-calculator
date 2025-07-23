@@ -1,7 +1,7 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const add = (a, b) => new Decimal(a).plus(b);
+const subtract = (a, b) => new Decimal(a).minus(b);
+const multiply = (a, b) => new Decimal(a).times(b);
+const divide = (a, b) => new Decimal(a).dividedBy(b);
 
 const operand1 = [];
 let operator = '';
