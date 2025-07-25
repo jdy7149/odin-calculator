@@ -63,6 +63,8 @@ document.querySelectorAll('button.digit')
         return;
     }
 
+    if (pressedValue === '0' && targetOperand.length === 1 && targetOperand[0] === '0') return;
+
     if (pressedValue === '.' && (targetOperand.includes('.') || targetOperand.length === 0)) return;
 
     targetOperand.push(pressedValue);
