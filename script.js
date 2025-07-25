@@ -2,7 +2,13 @@
 const add = (a, b) => new Decimal(a).plus(b);
 const subtract = (a, b) => new Decimal(a).minus(b);
 const multiply = (a, b) => new Decimal(a).times(b);
-const divide = (a, b) => new Decimal(a).dividedBy(b);
+const divide = (a, b) => {
+    if (!new Decimal(b).isZero()) {
+        return new Decimal(a).dividedBy(b);
+    } else {
+        throw Error('Could not divide by 0');
+    }
+}; 
 
 // Operands and operator
 const operand1 = [];
@@ -22,19 +28,14 @@ const operate = (operand1, operator, operand2) => {
         case '*':
             result = multiply(operand1, operand2); break;
         case '/':
-            if (operand2)
-                result = divide(operand1, operand2);
-            else {
-                throw Error('Could not divide by 0');
-            }
+            result = divide(operand1, operand2);
     }
-
-    return result.toDecimalPlaces(10);
+    return result;
 };
 
 const processOperation = (operandArr1, operator, operandArr2) => {
-    const x = parseFloat(operandArr1.join(''));
-    const y = parseFloat(operandArr2.join(''));
+    const x = operandArr1.join('')
+    const y = operandArr2.join('');
 
     const result = operate(x, operator, y);
     const splitResult = result.toFixed().split('');
