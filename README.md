@@ -4,7 +4,7 @@ Final project of the **Foundation** course from [The Odin Project](https://www.t
 
 A simple web-based calculator built with vanilla JavaScript, HTML, and CSS.
 
-You can try it in [Live Preview](https://jdy7149.github.io/odin-calculator)
+You can try it in [Live Preview](https://jdy7149.github.io/odin-calculator).
 
 
 ## Features
