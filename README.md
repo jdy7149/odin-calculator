@@ -1,6 +1,6 @@
 # Odin-Calculator
 
-A simple web-based calculator built with vanilla JavaScript, HTML, and CSS. [Live Preview](jdy7149.github.io/odin-calculator)
+A simple web-based calculator built with vanilla JavaScript, HTML, and CSS. [Live Preview](https://jdy7149.github.io/odin-calculator)
 
 
 ## Features
