@@ -1,8 +1,10 @@
+// Functions for operation
 const add = (a, b) => new Decimal(a).plus(b);
 const subtract = (a, b) => new Decimal(a).minus(b);
 const multiply = (a, b) => new Decimal(a).times(b);
 const divide = (a, b) => new Decimal(a).dividedBy(b);
 
+// Operands and operator
 const operand1 = [];
 let operator = '';
 const operand2 = [];
@@ -58,13 +60,16 @@ document.querySelectorAll('button.digit')
     const pressedValue = evt.target.textContent;
     const targetOperand = operator ? operand2 : operand1;
 
+    // Limit max length of input
     if (targetOperand.length >= 15) {
         window.alert('Could not input over 15 digits');
         return;
     }
 
+    // Prevent consecutive leading zeros
     if (pressedValue === '0' && targetOperand.length === 1 && targetOperand[0] === '0') return;
 
+    // Prevent decimal point being more than one
     if (pressedValue === '.' && (targetOperand.includes('.') || targetOperand.length === 0)) return;
 
     targetOperand.push(pressedValue);
@@ -73,6 +78,7 @@ document.querySelectorAll('button.digit')
 
 document.querySelectorAll('button.operator')
 .forEach(btn => btn.addEventListener('click', evt => {
+    // Ensure preceding operand not to be blank or end with '.'
     const followedOperand = operator ? operand2 : operand1;
     if (followedOperand.length === 0 || followedOperand.at(-1) === '.') return;
     
