@@ -42,7 +42,7 @@ body {
     justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
-    font-size: 50px;
+    line-height: 1.4;
     border: 1px lightgray solid;
     border-radius: 8px;
     background-color: dimgrey;
@@ -56,6 +56,7 @@ body {
     display: inline-block;
     min-width: 100%;
     text-align: right;
+    font-size: 50px;
     white-space: nowrap;
 }
 
