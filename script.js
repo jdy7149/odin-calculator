@@ -16,7 +16,7 @@ let operator = '';
 const operand2 = [];
 let isOperated = false;
 
-const display = document.querySelector('#display');
+const display = document.querySelector('#displayContent');
 
 const operate = (operand1, operator, operand2) => {
     let result;
@@ -75,6 +75,7 @@ document.querySelectorAll('button.digit')
 
     targetOperand.push(pressedValue);
     display.textContent += pressedValue;
+    display.parentElement.scrollLeft = display.scrollWidth;
 }));
 
 document.querySelectorAll('button.operator')
@@ -89,6 +90,7 @@ document.querySelectorAll('button.operator')
         isOperated = false;
         operator = pressedValue;
         display.textContent += ` ${operator} `;
+        display.parentElement.scrollLeft = display.scrollWidth;
     } else {
         let result;
         try {
@@ -99,6 +101,7 @@ document.querySelectorAll('button.operator')
         }
         operator = pressedValue;
         display.textContent = `${result} ${operator} `;
+        display.parentElement.scrollLeft = display.scrollWidth;
     }
 }));
 
@@ -117,6 +120,7 @@ document.querySelector('#equal').addEventListener('click', () => {
     operator = '';
     isOperated = true;
     display.textContent = result;
+    display.parentElement.scrollLeft = display.scrollWidth;
 });
 
 document.querySelector('#clear').addEventListener('click', clearDisplay);

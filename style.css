@@ -37,13 +37,11 @@ body {
 }
 
 #display {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    width: 100%;
+    display: flex; 
+    justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap;
     font-size: 50px;
     border: 1px lightgray solid;
     border-radius: 8px;
@@ -51,6 +49,14 @@ body {
     color: white;
     padding: 0 16px;
     scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
+#displayContent {
+    display: inline-block;
+    min-width: 100%;
+    text-align: right;
+    white-space: nowrap;
 }
 
 button {
