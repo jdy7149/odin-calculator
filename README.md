@@ -9,6 +9,7 @@ You can try it in [Live Preview](https://jdy7149.github.io/odin-calculator).
 
 ## Features
 
+* Digit limit: Up to 15 digits
 * **Digit input**: 0 – 9
 * **Operators**: Addition (`+`), Subtraction (`-`), Multiplication (`*`), Division (`/`)
 * **Decimal point (`.`)** for floating‑point numbers
